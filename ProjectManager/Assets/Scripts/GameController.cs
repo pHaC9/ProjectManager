@@ -18,6 +18,10 @@ public class GameController : MonoBehaviour
     public int qteOvos;
     public int dinheiro;
 
+    public TextMeshProUGUI teste1Text;
+
+
+
     [HideInInspector]
     public bool gamepaused;
  
@@ -27,8 +31,14 @@ public class GameController : MonoBehaviour
         controller.qteLeite = 30;
         controller.qteOvos = 30;
         controller.dinheiro = 100;
-
         numeroDeClientes = 3;
+
+        Load();
+    }
+    public void Load()
+    {
+
+        qtePilhas = PlayerPrefs.GetInt("qtePilhas", 10);
     }
 
     void Update()
@@ -40,7 +50,15 @@ public class GameController : MonoBehaviour
         GlobalData.qteLeite = controller.qteLeite;
         GlobalData.qteOvos = controller.qteOvos;
         GlobalData.dinheiro = controller.dinheiro;
-    }   
+        teste1Text.text = "Estoque: " + qtePilhas +  " \nPreço: " + 25 + "\n Dinheiro: " + dinheiro;
+
+        Save();
+    }
+
+    public void Save()
+    {
+         PlayerPrefs.SetString("dinheiro", dinheiro.ToString());
+    }
 
     void ChecarNumeroDeClientes()
     {        
@@ -50,4 +68,16 @@ public class GameController : MonoBehaviour
         }
         //else printa uma mensagem de fim
     }
+
+    public void BuyProductionUpgrade1()
+    {
+        if (qtePilhas > 0)
+        {
+            qtePilhas--;
+            dinheiro += 25;
+            
+        }
+
+    }
+
 }
