@@ -77,7 +77,6 @@ public class GameController : MonoBehaviour
             dinheiro += 25;
             
         }
-
     }
 
 }
