@@ -1235,7 +1235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff09e9596f6421e40987b1866bf61de1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pilhasText: {fileID: 0}
+  pilhasText: {fileID: 737062081}
   leiteText: {fileID: 0}
   ovosText: {fileID: 0}
   dinheiroText: {fileID: 1593075780}
