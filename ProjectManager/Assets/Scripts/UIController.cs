@@ -17,6 +17,7 @@ public class UIController : MonoBehaviour
     public TextMeshProUGUI leiteText;
     public TextMeshProUGUI ovosText;
     public TextMeshProUGUI dinheiroText;
+ 
 
     // Start is called before the first frame update
     void Start()
