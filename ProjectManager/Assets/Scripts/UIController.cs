@@ -34,10 +34,10 @@ public class UIController : MonoBehaviour
 
     public void AtualizarHUD()
     {
-        pilhasText.text = "ITEM 1 = " + GlobalData.qtePilhas;
-        leiteText.text = "ITEM 2 = " + GlobalData.qteLeite;
-        ovosText.text = "ITEM 3 = " + GlobalData.qteOvos;
-        dinheiroText.text = "DINHEIRO = " + GlobalData.dinheiro;
+        pilhasText.text = "Estoque: " + GlobalData.qtePilhas + " \nPreço: " + 25;
+        leiteText.text = "Estoque: " + GlobalData.qteLeite + " \nPreço: " + 25;
+        ovosText.text = "Estoque: " + GlobalData.qteOvos + " \nPreço: " + 25;
+        dinheiroText.text = "Dinheiro: " + GlobalData.dinheiro;
     }
 
 

@@ -18,9 +18,6 @@ public class GameController : MonoBehaviour
     public int qteOvos;
     public int dinheiro;
 
-    public TextMeshProUGUI teste1Text;
-
-
 
     [HideInInspector]
     public bool gamepaused;
@@ -37,7 +34,6 @@ public class GameController : MonoBehaviour
     }
     public void Load()
     {
-
         qtePilhas = PlayerPrefs.GetInt("qtePilhas", 10);
     }
 
@@ -50,8 +46,6 @@ public class GameController : MonoBehaviour
         GlobalData.qteLeite = controller.qteLeite;
         GlobalData.qteOvos = controller.qteOvos;
         GlobalData.dinheiro = controller.dinheiro;
-        teste1Text.text = "Estoque: " + qtePilhas +  " \nPreço: " + 25 + "\n Dinheiro: " + dinheiro;
-
         Save();
     }
 

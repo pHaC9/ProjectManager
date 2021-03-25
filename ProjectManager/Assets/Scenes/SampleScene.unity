@@ -1236,8 +1236,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pilhasText: {fileID: 737062081}
-  leiteText: {fileID: 0}
-  ovosText: {fileID: 0}
+  leiteText: {fileID: 2061471026}
+  ovosText: {fileID: 1616532931}
   dinheiroText: {fileID: 1593075780}
 --- !u!4 &931216377
 Transform:
@@ -2343,7 +2343,6 @@ MonoBehaviour:
   qteLeite: 0
   qteOvos: 0
   dinheiro: 0
-  teste1Text: {fileID: 737062081}
   gamepaused: 0
 --- !u!4 &1726945937
 Transform:
