@@ -51,7 +51,7 @@ public class GameController : MonoBehaviour
         controller.qtePilhas = 30;
         controller.qteLeite = 30;
         controller.qteOvos = 30;
-        controller.dinheiro = 100;
+        controller.dinheiro = 0;
         numeroDeClientes = 3;
 
         Load();
@@ -60,20 +60,20 @@ public class GameController : MonoBehaviour
     }
     public void Load()
     {
-        qtePilhas = PlayerPrefs.GetInt("qtePilhas", 10);
+        qtePilhas = PlayerPrefs.GetInt("qtePilhas", 50);
     }
 
     void Update()
     {
         //Spawna clientes caso existirem menos de 3 clientes
         SpawnarClientes();
-        FilaManager();
 
         GlobalData.qtePilhas = controller.qtePilhas;
         GlobalData.qteLeite = controller.qteLeite;
         GlobalData.qteOvos = controller.qteOvos;
         GlobalData.dinheiro = controller.dinheiro;
         Save();
+        FilaManager();
     }
 
     public void Save()
@@ -111,15 +111,5 @@ public class GameController : MonoBehaviour
     }
 
     
-
-    public void BuyProductionUpgrade1()
-    {
-        if (qtePilhas > 0)
-        {
-            qtePilhas--;
-            dinheiro += 25;
-            
-        }
-    }
 
 }

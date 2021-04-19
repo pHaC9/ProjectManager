@@ -117,6 +117,7 @@ public class Cliente : MonoBehaviour
         yield return null;
     }
 
+
     IEnumerator ClientePegaProdutos()
     {
         estadoAtualDoCliente = estadoDoCliente.padrao;
@@ -144,17 +145,26 @@ public class Cliente : MonoBehaviour
         {
             GameController.controller.clienteDoPoint1 = null;
             estadoAtualDoCliente = estadoDoCliente.esta_na_fila;
+            balaoFala.gameObject.SetActive(true);
+            textoFala.text = "Gostaria de x" + quantidadePedida + " " + nomeDoPedido + ", por favor.";
+            int totalVisibleCharacters = textoFala.textInfo.characterCount;
         }
         else if (GameController.controller.clienteDoPoint2 == gameObject)
         {
             GameController.controller.clienteDoPoint2 = null;
             estadoAtualDoCliente = estadoDoCliente.esta_na_fila;
+            balaoFala.gameObject.SetActive(true);
+            textoFala.text = "Gostaria de x" + quantidadePedida + " " +
+            nomeDoPedido + ", por favor.";
         }
         else if (GameController.controller.clienteDoPoint3 == gameObject)
         {
             GameController.controller.clienteDoPoint3 = null;
             estadoAtualDoCliente = estadoDoCliente.esta_na_fila;
-        }        
+            balaoFala.gameObject.SetActive(true);
+            textoFala.text = "Gostaria de x" + quantidadePedida + " " +
+            nomeDoPedido + ", por favor.";
+        }
     }
 
 
@@ -166,7 +176,6 @@ public class Cliente : MonoBehaviour
             yield return null;
         }
     }
-
 
 
     // Essa é a sequência de eventos em que o cliente vai fazer o seu pedido
