@@ -16,4 +16,7 @@ public static class GlobalData
     public static int ovosCusto = 15;
 
     public static int dinheiro;
+    public static int estoqueAgua;
+    public static int estoqueFerro;
+    public static int estoqueRemedio;
 }

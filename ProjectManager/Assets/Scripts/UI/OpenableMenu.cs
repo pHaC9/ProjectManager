@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class OpenableMenu : MonoBehaviour
 {   //Esse script cuida de métodos que executam a partir de botões
@@ -11,7 +12,7 @@ public class OpenableMenu : MonoBehaviour
 	public GameObject Panel;
     public AudioSource audioClip = null;
     public AudioSource audioClipErro = null;
-
+    
     public void TogglePanel(){
         //audioClip.Play();
 		if(Panel != null){
@@ -98,9 +99,10 @@ public class OpenableMenu : MonoBehaviour
     {
         if (GlobalData.qtePilhas > 0) //SE AINDA TIVER PILHAS NO ESTOQUE:
         {
-            //audioClip.Play();
+            /*audioClip.Play();
             GlobalData.qtePilhas -= Cliente.controller.quantidadePedida;
             GlobalData.dinheiro = Mathf.Clamp(GlobalData.dinheiro + (GlobalData.pilhasCusto * Cliente.controller.quantidadePedida), 0, 500);
+            */
         }
         else
         {
@@ -112,9 +114,10 @@ public class OpenableMenu : MonoBehaviour
     {
         if (GlobalData.qteLeite > 0) //SE AINDA TIVER LEITE NO ESTOQUE:
         {
-            //audioClip.Play();
+            /*audioClip.Play();
             GlobalData.qteLeite -= Cliente.controller.quantidadePedida;
             GlobalData.dinheiro = Mathf.Clamp(GlobalData.dinheiro + (GlobalData.leiteCusto * Cliente.controller.quantidadePedida), 0, 500);
+            */
         }
         else
         {
@@ -126,14 +129,44 @@ public class OpenableMenu : MonoBehaviour
     {
         if (GlobalData.qteOvos > 0) //SE AINDA TIVER OVOS NO ESTOQUE:
         {
-            //audioClip.Play();
+            /*audioClip.Play();
             GlobalData.qteOvos -= Cliente.controller.quantidadePedida;
             GlobalData.dinheiro = Mathf.Clamp(GlobalData.dinheiro + (GlobalData.ovosCusto * Cliente.controller.quantidadePedida), 0, 500);
+            */
         }
         else
         {
             //audioClipErro.Play();
             return;
         }
+    }
+
+    public GameObject InputMask;
+    public bool menuEstaAberto;
+    public float AnchorYInicial;//ABRIR DEBUG NO INSPECTOR PARA ENCONTRAR ESSE VALOR
+    public float AnchorYFinal;  //ABRIR DEBUG NO INSPECTOR PARA ENCONTRAR ESSE VALOR
+    public void ToggleMenu()
+    {
+        StartCoroutine("ToggleMenuCoroutine");
+    }
+    IEnumerator ToggleMenuCoroutine()
+    {
+        RectTransform rectTransform = Panel.GetComponent<RectTransform>();
+        float xAtual = Panel.GetComponent<RectTransform>().anchoredPosition.x;
+        if (menuEstaAberto)
+        {
+            InputMask.SetActive(true);
+            menuEstaAberto = false;
+            rectTransform.DOAnchorPosY(AnchorYInicial, 0.25f);
+            InputMask.SetActive(false);
+        }
+        else
+        {
+            InputMask.SetActive(true);
+            menuEstaAberto = true;
+            rectTransform.DOAnchorPosY(AnchorYFinal, 0.25f);
+            InputMask.SetActive(false);
+        }
+        yield return null;
     }
 }

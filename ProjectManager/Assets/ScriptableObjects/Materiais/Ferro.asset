@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b6071d91e329047899b5206458f42a, type: 3}
+  m_Name: Ferro
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: d82d0930bbb87f74cb0fa0ce3bc9183d, type: 3}
+  tipoDoItem: 0
+  estoque: 40
+  custoParaComprarPacote: 10
+  quantidadeComprado: 10

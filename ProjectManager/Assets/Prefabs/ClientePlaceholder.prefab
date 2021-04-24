@@ -19,7 +19,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &304807359187924157
 RectTransform:
   m_ObjectHideFlags: 0
@@ -625,8 +625,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a2976894aa0abc40affeaa4046bbb17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nomeDoPedido: 
-  quantidadePedida: 0
   estadoAtualDoCliente: 0
   balaoFala: {fileID: 290017171507546572}
   textoFala: {fileID: 0}

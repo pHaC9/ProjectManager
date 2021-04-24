@@ -4,15 +4,14 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-
 public class Cliente : MonoBehaviour
 {
     public static Cliente controller;
     private void Awake() { controller = this; }
 
-    private ArrayList itemPedido = new ArrayList();
-    public string nomeDoPedido; // O que o cliente vai pedir
-    public int quantidadePedida; // O quanto ele vai pedir        
+    //private ArrayList itemPedido = new ArrayList();
+    Item itemPedido;
+    Image itemImage;
 
     public enum estadoDoCliente
     {
@@ -45,28 +44,11 @@ public class Cliente : MonoBehaviour
     // Randomizando o tipo de pedido e a quantidade
     void RandomizarPedido()
     {
-        itemPedido.AddRange(new List<string>() { "Pilhas", "Leite", "Ovos" });
-        int pedido = Random.Range(0, 3);
-        nomeDoPedido = itemPedido[pedido].ToString();
-        quantidadePedida = Random.Range(1, 5);
+        int i = Random.Range(0, ItemList.items.Count-1);
+        itemPedido = ItemList.items[i];
+        itemImage.sprite = itemPedido.sprite;
     }
-
-    /* MÉTODO OBSOLETO - MUDAR DE 2D PARA 3D TORNA ESSE BLOCO DE CÓDIGO INÚTIL, 
-     * VOU DEIXAR ELE AQUI SE A GENTE PRECISAR DELE NO FUTURO
-     * 
-    // Faz o objeto "Cliente" se mover até o balcão do caixa
-    void MoveTowardsDestination()
-    {
-        Vector2 destino = destinoPoint.gameObject.GetComponent<Transform>().position;
-        Vector2 posAtual = gameObject.GetComponent<Transform>().position;
-        
-        if (posAtual.x != destino.x)
-        {
-            transform.position = Vector2.MoveTowards(new Vector2(transform.position.x, transform.position.y), destino, 800 * Time.deltaTime);
-        }
-        else StartCoroutine(ClienteFazPedido());        
-    }
-    */
+    
 
     void ClienteHandler() //Toma conta de todo o comportamento de um cliente
     {
@@ -116,8 +98,6 @@ public class Cliente : MonoBehaviour
         }
         yield return null;
     }
-
-
     IEnumerator ClientePegaProdutos()
     {
         estadoAtualDoCliente = estadoDoCliente.padrao;
@@ -146,7 +126,6 @@ public class Cliente : MonoBehaviour
             GameController.controller.clienteDoPoint1 = null;
             estadoAtualDoCliente = estadoDoCliente.esta_na_fila;
             balaoFala.gameObject.SetActive(true);
-            textoFala.text = "Gostaria de x" + quantidadePedida + " " + nomeDoPedido + ", por favor.";
             int totalVisibleCharacters = textoFala.textInfo.characterCount;
         }
         else if (GameController.controller.clienteDoPoint2 == gameObject)
@@ -154,58 +133,21 @@ public class Cliente : MonoBehaviour
             GameController.controller.clienteDoPoint2 = null;
             estadoAtualDoCliente = estadoDoCliente.esta_na_fila;
             balaoFala.gameObject.SetActive(true);
-            textoFala.text = "Gostaria de x" + quantidadePedida + " " +
-            nomeDoPedido + ", por favor.";
         }
         else if (GameController.controller.clienteDoPoint3 == gameObject)
         {
             GameController.controller.clienteDoPoint3 = null;
             estadoAtualDoCliente = estadoDoCliente.esta_na_fila;
-            balaoFala.gameObject.SetActive(true);
-            textoFala.text = "Gostaria de x" + quantidadePedida + " " +
-            nomeDoPedido + ", por favor.";
+            balaoFala.gameObject.SetActive(true);            
         }
     }
-
-
     IEnumerator ContagemRegressiva()
     {
+        float time = 3f;
         while (timer.fillAmount < 1f)
         {
-            timer.fillAmount += Mathf.Clamp(0.1f * Time.deltaTime, 0, 1);
+            timer.fillAmount += Mathf.Clamp(1.0f/time * Time.deltaTime, 0, 1);
             yield return null;
         }
-    }
-
-
-    // Essa é a sequência de eventos em que o cliente vai fazer o seu pedido
-    // ADAPTAR PRO NOVO CENÁRIO EM 3D!!!
-    IEnumerator ClienteFazPedido()
-    {        
-        //sendoAtendido = true;  Pra que essa co-rotina execute uma vez só
-        yield return new WaitForSeconds(0.2f);
-        balaoFala.SetActive(true); //Faz o balão de fala aparecer
-        yield return new WaitForSeconds(0.1f);
-        textoFala.text = "Gostaria de x" + quantidadePedida + " " + 
-            nomeDoPedido + ", por favor."; //Muda o texto
-        //StartCoroutine(DisplayTextoTypewriter());
-        yield return null;        
-    }
-
-
-    // Co-rotina que em teoria faria o texto da fala do cliente 
-    // aparecer letra por letra, mas não consegui fazer funcionar direito ainda
-    IEnumerator DisplayTextoTypewriter()
-    {        
-        textoFala.text = "Gostaria de x" + quantidadePedida + " " + nomeDoPedido + ", por favor.";
-        int totalVisibleCharacters = textoFala.textInfo.characterCount;
-
-        for (int i = 0; i < totalVisibleCharacters + 1; i++)
-        {
-            int visibleCount = i % (totalVisibleCharacters + 1);
-            textoFala.maxVisibleCharacters = visibleCount;
-            yield return new WaitForSeconds(0.2f);
-            i++;
-        }      
-    }
+    }       
 }

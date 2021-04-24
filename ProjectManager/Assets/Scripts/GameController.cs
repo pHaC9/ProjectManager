@@ -91,7 +91,7 @@ public class GameController : MonoBehaviour
             {
                 Instantiate(cliente, new Vector3(spawner.transform.position.x, spawner.transform.position.y, spawner.transform.position.z), Quaternion.Euler(0, -45, 0));
                 clienteSpawnTimer = 0f;
-                intervaloSpawnCliente = Random.Range(3f, 5f);                
+                intervaloSpawnCliente = Random.Range(3f, 6f);                
             }
         }        
     }
